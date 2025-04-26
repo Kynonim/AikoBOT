@@ -23,7 +23,7 @@ bun install
 
 3. Create *.env* file with these variables:
 ```env
-SESSION_PATH="/path/path2"
+SESSION_PATH="/path/session"
 ADMIN_NUMBER="62xxxxxx@s.whatsapp.net" 
 GEMINI_APIKEY="AIxxxxxxxx"
 WAIFU_URL="https://xxxxxxx"
@@ -53,14 +53,14 @@ bun dev
 
 | Variable         | Description                          | Example Value                   |
 |------------------|--------------------------------------|---------------------------------|
-| `SESSION_PATH`   | Path to store session files          | `"./src/raflesia"`             |
+| `SESSION_PATH`   | Path to store session files          | `"/path/session"`             |
 | `ADMIN_NUMBER`   | Admin WhatsApp number with country code | `"62xxxxxx@s.whatsapp.net"`    |
 | `GEMINI_APIKEY`  | Google Gemini API key                | `"AIxxxxxxxx"`                 |
-| `WAIFU_URL`      | Waifu image API endpoint             | `"https://api.waifu.im"`       |
-| `HISTORY_PATH`   | Path to store chat history JSON      | `"./src/raflesia/history"`     |
-| `ASSETS_PATH`    | Path for storing temporary assets    | `"./src/assets"`               |
+| `WAIFU_URL`      | Waifu image API endpoint             | `"https://xxxxxxxxx"`       |
+| `HISTORY_PATH`   | Path to store chat history JSON      | `"/path/history"`     |
+| `ASSETS_PATH`    | Path for storing temporary assets    | `"/path/assets"`               |
 | `CMD`            | Command prefix for bot               | `"!"`                          |
-| `ROLE_SYSTEM`    | AI personality prompt                | `"Kamu adalah AI cewek imut"`  |
+| `ROLE_SYSTEM`    | AI personality prompt                | `"Kamu adalah my AI cewek imut cute gw i"`  |
 
 ## COMMANDS
 
