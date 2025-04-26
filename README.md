@@ -49,23 +49,28 @@ bun dev
 - Admin-only commands
 - Waifu image generation
 
-## ENV VARIABLES
-|-----------------|--------------------------|-----------------------------|
-| SESSION_PATH    | Session files location   | "/path/path2"               |
-| ADMIN_NUMBER    | Admin WhatsApp number    | "62xxxxxx@s.whatsapp.net"   |
-| GEMINI_APIKEY   | Google AI API key        | "AIxxxxxxxx"                |
-| WAIFU_URL       | Waifu image API endpoint | "https://xxxxxxx"           |
-| HISTORY_PATH    | Chat history storage     | "/path/history"             |
-| ASSETS_PATH     | Temporary media storage  | "/path/assets"              |
-| CMD             | Command prefix           | "!"                         |
-| ROLE_SYSTEM     | AI personality setting   | "Music me my favorite i gw" |
-|-----------------|--------------------------|-----------------------------|
+## ENVIRONMENT VARIABLES
+
+| Variable         | Description                          | Example Value                   |
+|------------------|--------------------------------------|---------------------------------|
+| `SESSION_PATH`   | Path to store session files          | `"./src/raflesia"`             |
+| `ADMIN_NUMBER`   | Admin WhatsApp number with country code | `"62xxxxxx@s.whatsapp.net"`    |
+| `GEMINI_APIKEY`  | Google Gemini API key                | `"AIxxxxxxxx"`                 |
+| `WAIFU_URL`      | Waifu image API endpoint             | `"https://api.waifu.im"`       |
+| `HISTORY_PATH`   | Path to store chat history JSON      | `"./src/raflesia/history"`     |
+| `ASSETS_PATH`    | Path for storing temporary assets    | `"./src/assets"`               |
+| `CMD`            | Command prefix for bot               | `"!"`                          |
+| `ROLE_SYSTEM`    | AI personality prompt                | `"Kamu adalah AI cewek imut"`  |
 
 ## COMMANDS
-- .riky [question]  - Ask Gemini a question (Grub)
-- ? [question] - Ask Gemini a question (User)
-- Menu - Show menu
-- etc
+
+| Command           | Description                          | Example Usage                |
+|-------------------|--------------------------------------|------------------------------|
+| `$PREFIX + riky [text]`    | Ask Gemini AI a question             | `For Grub My Self`     |
+| `$PREFIX + tanya [text]`   | Ask question       | `For Grub Whatsapp`     |
+| `? [text]`   | Ask question       | `For Grub Whatsapp`     |
+| `Menu`   | Simple menu       | `how to use. etc`     
+
 
 ## NOTES
 - First run requires QR code scan
