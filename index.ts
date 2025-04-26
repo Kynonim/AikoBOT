@@ -1,7 +1,8 @@
 import "dotenv/config";
 import { Boom } from "@hapi/boom";
 import pino from "pino";
-import RaflesiaBOT, { Browsers, delay, DisconnectReason, downloadMediaMessage, getContentType, proto, useMultiFileAuthState, fetchLatestBaileysVersion, type ConnectionState, type AnyMessageContent } from "@whiskeysockets/baileys";
+import readline from "readline";
+import RaflesiaBOT, { Browsers, delay, DisconnectReason, downloadMediaMessage, getContentType, proto, useMultiFileAuthState, fetchLatestBaileysVersion, type ConnectionState, type AnyMessageContent, makeCacheableSignalKeyStore } from "@whiskeysockets/baileys";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { RaflesiaResponse } from "./src/_";
 import { createWriteStream, existsSync, mkdirSync } from "fs";
@@ -10,6 +11,11 @@ import { AIChatsResponse } from "./src/lib/AIChatsResponse";
 import { AIResponseImageCreator } from "./src/lib/AIImageResponse";
 
 const pairing = process.argv.includes("--pairing");
+const baca = readline.createInterface({ input: process.stdin, output: process.stdout });
+const quests = (teks: string) => new Promise<string>((resolve) => baca.question(teks, resolve));
+const logger = pino({ timestamp: () => `,"time":"${new Date().toJSON()}"` }, pino.destination('./src/logs.txt'));
+logger.level = "trace";
+
 const GeminiAI = new GoogleGenerativeAI(process.env.GEMINI_APIKEY ?? "");
 
 const sessionPath = process.env.SESSION_PATH ?? "./session";
@@ -26,10 +32,21 @@ async function KoneksiBOT() {
   const koneksi = RaflesiaBOT({
     browser: Browsers.macOS("RaflesiaBOT"),
     printQRInTerminal: !pairing,
-    auth: auth.state,
-    logger: pino({ level: "silent" }),
+    auth: {
+      creds: auth.state.creds,
+      keys: makeCacheableSignalKeyStore(auth.state.keys, logger)
+    },
+    logger,
     version,
+    generateHighQualityLinkPreview: true,
+    syncFullHistory: true,
   });
+
+  if (pairing && !koneksi.authState.creds.registered) {
+    const phone = await quests("Masukkan nomor telepon Anda: ");
+    const code = await koneksi.requestPairingCode(phone);
+    console.log(`Kode verifikasi: ${code}`);
+  }
 
   koneksi.ev.on("creds.update", auth.saveCreds);
   koneksi.ev.on("connection.update", (update) => handleConnectionUpdate(update, koneksi));
@@ -37,7 +54,6 @@ async function KoneksiBOT() {
 
   return koneksi;
 }
-
 function handleConnectionUpdate(update: Partial<ConnectionState>, koneksi: any) {
   if (update.connection === "close") {
     const reconnect = (update.lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut;
