@@ -176,3 +176,6 @@ dist
 
 *.raflesia/
 /src/raflesia/
+
+*.jpg
+*.png

@@ -50,14 +50,14 @@ bun dev
 - Waifu image generation
 
 ## ENV VARIABLES
-SESSION_PATH    - Session files location       | "/path/path2"
-ADMIN_NUMBER    - Admin WhatsApp number       | "62xxxxxx@s.whatsapp.net"  
-GEMINI_APIKEY   - Google AI API key           | "AIxxxxxxxx"
-WAIFU_URL       - Waifu image API endpoint    | "https://xxxxxxx"
-HISTORY_PATH    - Chat history storage        | "/path/history"
-ASSETS_PATH     - Temporary media storage     | "/path/assets"
-CMD             - Command prefix              | "!"
-ROLE_SYSTEM     - AI personality setting      | "Music me my favorite i gw"
+| SESSION_PATH    | Session files location   | "/path/path2"               |
+| ADMIN_NUMBER    | Admin WhatsApp number    | "62xxxxxx@s.whatsapp.net"   |
+| GEMINI_APIKEY   | Google AI API key        | "AIxxxxxxxx"                |
+| WAIFU_URL       | Waifu image API endpoint | "https://xxxxxxx"           |
+| HISTORY_PATH    | Chat history storage     | "/path/history"             |
+| ASSETS_PATH     | Temporary media storage  | "/path/assets"              |
+| CMD             | Command prefix           | "!"                         |
+| ROLE_SYSTEM     | AI personality setting   | "Music me my favorite i gw" |
 
 ## COMMANDS
 - .riky [question]  - Ask Gemini a question (Grub)
